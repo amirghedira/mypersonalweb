@@ -98,22 +98,8 @@ const Aboutus = () => {
                         <div style={{ paddingTop: '50px', whiteSpace: 'pre-wrap' }}>
                             <h2 id="interest" className={classes.title}>Interest</h2>
                             <p className={classes.paragraphe} >
-                                sdsdsodiq sdisqdopsqidsqidqsd qssdsqdsqsqdopsqidsqi dqs dsqss dsqd sqsqidq ssqsdsd dsds
-                                dqsdqsds qdqs dqs dqsd qsdqsdqsdqsdss ssssdd ddddddfdfsqqsqfdfds dsd
-                                qsdqsdqsdqsdq sdsqssdqdq sddsdsds dsdsdsdcxcx
-                                sdsdsodiqs disqdop sqidsq idqsdsq ssdsqdsqsqdopsq idsqidqsdsq ssdsqdsq sqidqssqsdsd dsds
-                                dqsdqs dsqd qs dqsdqsdq  sdqsdqsd qsdssssss ddddddddfd sqqsqfdfdsdsd
-                                qsdqs dqsd qsdqs dsqssdq dqsddsdsdsdsdsdsdcxcx
-                                sdsdsodiqsdisqdopsqidsqidqsd sqs sdsqds qsqdopsqid sqidq sdsq ssdsqdsq sqidqssqsdsd dsds
-                                dqsdqsds qdqsd qsdqsdqs dqsdqs dqsdssssssddddddddfdfsqqsqfdfdsdsd
-                                qsdqs dqsd qsdqs dsqss dqdqsddsdsdsds dsdsdcxcx
-                                sdsdsodiqsdisq dopsqids qidqsdsqss dsqdsqs   qdops qidsqi dqsds qssdsqdsqs qidqssq sdsd ds ds
-                                dqsdq sds qdqsdq sdqsd qsdqsdqs dqsdss ssssddd dddddfd fsqq sqf dfdsdsd
-                                qsdqsd qsdq sdqsdsqss dqdqsd dsdsds dsdsdsdcxcx
-                                sdsdsodiqs sdisqdo psqidsqidqsd sqssdsqdsqsqd opsqidsqid qsdsqssdsq sqsq idqssq sdsd dsds
-                                dqsdq sds qdqsd qsd qsdqsdqsd qsdqsds sssssdd  d dddddfd fsq qsqfdf dsdsd
-                                qsd qsd qsdq sdqsd sqssd qdqsddsds dsdsd sdsdcxcx
-                                 </p>
+
+                            </p>
                         </div>
 
                     </div>
