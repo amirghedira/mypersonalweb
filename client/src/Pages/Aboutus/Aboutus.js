@@ -110,7 +110,7 @@ const Aboutus = () => {
                                 sdsdsodiqsdisq dopsqids qidqsdsqss dsqdsqs   qdops qidsqi dqsds qssdsqdsqs qidqssq sdsd ds ds
                                 dqsdq sds qdqsdq sdqsd qsdqsdqs dqsdss ssssddd dddddfd fsqq sqf dfdsdsd
                                 qsdqsd qsdq sdqsdsqss dqdqsd dsdsds dsdsdsdcxcx
-                                sdsdsodiq sdisqdo psqidsqidqsd sqssdsqdsqsqd opsqidsqid qsdsqssdsq sqsq idqssq sdsd dsds
+                                sdsdsodiqs sdisqdo psqidsqidqsd sqssdsqdsqsqd opsqidsqid qsdsqssdsq sqsq idqssq sdsd dsds
                                 dqsdq sds qdqsd qsd qsdqsdqsd qsdqsds sssssdd  d dddddfd fsq qsqfdf dsdsd
                                 qsd qsd qsdq sdqsd sqssd qdqsddsds dsdsd sdsdcxcx
                                  </p>
