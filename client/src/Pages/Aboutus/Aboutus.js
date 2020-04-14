@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from './Aboutus.module.css'
 import { Row, Container, Col } from 'reactstrap'
+import { Link } from 'react-router-dom'
 
 
 const Aboutus = () => {
@@ -37,70 +38,46 @@ const Aboutus = () => {
                     <div>
                         <div id="introduction" style={{ paddingTop: '50px' }}>
                             <h2 className={classes.title}>Introduction</h2>
-                            <p className={classes.paragraphe}>
-                                sdsdsodiq sdisqdopsqidsqidqsd qssdsqdsqsqdopsqidsqi dqs dsqss dsqd sqsqidq ssqsdsd dsds
-                                dqsdqsds qdqs dqs dqsd qsdqsdqsdqsdss ssssdd ddddddfdfsqqsqfdfds dsd
-                                qsdqsdqsdqsdq sdsqssdqdq sddsdsds dsdsdsdcxcx
-                                sdsdsodiqs disqdop sqidsq idqsdsq ssdsqdsqsqdopsq idsqidqsdsq ssdsqdsq sqidqssqsdsd dsds
-                                dqsdqs dsqd qs dqsdqsdq  sdqsdqsd qsdssssss ddddddddfd sqqsqfdfdsdsd
-                                qsdqs dqsd qsdqs dsqssdq dqsddsdsdsdsdsdsdcxcx
-                                sdsdsodiqsdisqdopsqidsqidqsd sqs sdsqds qsqdopsqid sqidq sdsq ssdsqdsq sqidqssqsdsd dsds
-                                dqsdqsds qdqsd qsdqsdqs dqsdqs dqsdssssssddddddddfdfsqqsqfdfdsdsd
-                                qsdqs dqsd qsdqs dsqss dqdqsddsdsdsds dsdsdcxcx
-                                sdsdsodiqsdisq dopsqids qidqsdsqss dsqdsqs   qdops qidsqi dqsds qssdsqdsqs qidqssq sdsd ds ds
-                                dqsdq sds qdqsdq sdqsd qsdqsdqs dqsdss ssssddd dddddfd fsqq sqf dfdsdsd
-                                qsdqsd qsdq sdqsdsqss dqdqsd dsdsds dsdsdsdcxcx
-                                sdsdsodiq sdisqdo psqidsqidqsd sqssdsqdsqsqd opsqidsqid qsdsqssdsq sqsq idqssq sdsd dsds
-                                dqsdq sds qdqsd qsd qsdqsdqsd qsdqsds sssssdd  d dddddfd fsq qsqfdf dsdsd
-                                qsd qsd qsdq sdqsd sqssd qdqsddsds dsdsd sdsdcxcx
-                                 </p>
+                            <pre className={classes.paragraphe}>
+                                This website is dedicated to display my current projects , each new projects will be uploaded with in
+                                the link to github and also it will be available to be downloaded directly.
+                                This platform provide more information about each project made , with full details and provide a comment section
+                                in which you can comment each project and give your opinion and your feedback .
+                                also any question or suggestion will be taken under consideration.
+                                Please ,if you have a <Link to='topics/questions'>question</Link> or <Link to='topics/suggestions'>suggestion</Link> dont hesistate to post them .
+
+                            </pre>
                         </div>
                         <div id="rules" style={{ paddingTop: '50px' }} >
                             <h2 className={classes.title}>Rules</h2>
-                            <p className={classes.paragraphe} >
-                                sdsdsodiq sdisqdopsqidsqidqsd qssdsqdsqsqdopsqidsqi dqs dsqss dsqd sqsqidq ssqsdsd dsds
-                                dqsdqsds qdqs dqs dqsd qsdqsdqsdqsdss ssssdd ddddddfdfsqqsqfdfds dsd
-                                qsdqsdqsdqsdq sdsqssdqdq sddsdsds dsdsdsdcxcx
-                                sdsdsodiqs disqdop sqidsq idqsdsq ssdsqdsqsqdopsq idsqidqsdsq ssdsqdsq sqidqssqsdsd dsds
-                                dqsdqs dsqd qs dqsdqsdq  sdqsdqsd qsdssssss ddddddddfd sqqsqfdfdsdsd
-                                qsdqs dqsd qsdqs dsqssdq dqsddsdsdsdsdsdsdcxcx
-                                sdsdsodiqsdisqdopsqidsqidqsd sqs sdsqds qsqdopsqid sqidq sdsq ssdsqdsq sqidqssqsdsd dsds
-                                dqsdqsds qdqsd qsdqsdqs dqsdqs dqsdssssssddddddddfdfsqqsqfdfdsdsd
-                                qsdqs dqsd qsdqs dsqss dqdqsddsdsdsds dsdsdcxcx
-                                sdsdsodiqsdisq dopsqids qidqsdsqss dsqdsqs   qdops qidsqi dqsds qssdsqdsqs qidqssq sdsd ds ds
-                                dqsdq sds qdqsdq sdqsd qsdqsdqs dqsdss ssssddd dddddfd fsqq sqf dfdsdsd
-                                qsdqsd qsdq sdqsdsqss dqdqsd dsdsds dsdsdsdcxcx
-                                sdsdsodiq sdisqdo psqidsqidqsd sqssdsqdsqsqd opsqidsqid qsdsqssdsq sqsq idqssq sdsd dsds
-                                dqsdq sds qdqsd qsd qsdqsdqsd qsdqsds sssssdd  d dddddfd fsq qsqfdf dsdsd
-                                qsd qsd qsdq sdqsd sqssd qdqsddsds dsdsd sdsdcxcx
-                                 </p>
+                            <pre className={classes.paragraphe} >
+                                {`For a better experience to our users , several rules must be respected.
+                                1. Do not spam the comment section , infact you are allowed to post a single post in a row.
+                                2. Do not use any swearing words or insults , be respectful!
+                                3. Do not use names containing a bad words , or a bad meaning, it will be grate to put your real name.
+                                4. Do not fight with other users or insult them.
+                                5. Questions must be related to development and software ingineering , not anything else.(no personal questions)
+                                6. Suggestions must be related to this platform in order to improve it. (no personal suggestion)
+                                `
+
+                                }
+
+                            </pre>
                         </div>
                         <div id="goal" style={{ paddingTop: '50px' }}>
                             <h2 className={classes.title}>Goal</h2>
                             <p className={classes.paragraphe} >
-                                sdsdsodiq sdisqdopsqidsqidqsd qssdsqdsqsqdopsqidsqi dqs dsqss dsqd sqsqidq ssqsdsd dsds
-                                dqsdqsds qdqs dqs dqsd qsdqsdqsdqsdss ssssdd ddddddfdfsqqsqfdfds dsd
-                                qsdqsdqsdqsdq sdsqssdqdq sddsdsds dsdsdsdcxcx
-                                sdsdsodiqs disqdop sqidsq idqsdsq ssdsqdsqsqdopsq idsqidqsdsq ssdsqdsq sqidqssqsdsd dsds
-                                dqsdqs dsqd qs dqsdqsdq  sdqsdqsd qsdssssss ddddddddfd sqqsqfdfdsdsd
-                                qsdqs dqsd qsdqs dsqssdq dqsddsdsdsdsdsdsdcxcx
-                                sdsdsodiqsdisqdopsqidsqidqsd sqs sdsqds qsqdopsqid sqidq sdsq ssdsqdsq sqidqssqsdsd dsds
-                                dqsdqsds qdqsd qsdqsdqs dqsdqs dqsdssssssddddddddfdfsqqsqfdfdsdsd
-                                qsdqs dqsd qsdqs dsqss dqdqsddsdsdsds dsdsdcxcx
-                                sdsdsodiqsdisq dopsqids qidqsdsqss dsqdsqs   qdops qidsqi dqsds qssdsqdsqs qidqssq sdsd ds ds
-                                dqsdq sds qdqsdq sdqsd qsdqsdqs dqsdss ssssddd dddddfd fsqq sqf dfdsdsd
-                                qsdqsd qsdq sdqsdsqss dqdqsd dsdsds dsdsdsdcxcx
-                                sdsdsodiq sdisqdo psqidsqidqsd sqssdsqdsqsqd opsqidsqid qsdsqssdsq sqsq idqssq sdsd dsds
-                                dqsdq sds qdqsd qsd qsdqsdqsd qsdqsds sssssdd  d dddddfd fsq qsqfdf dsdsd
-                                qsd qsd qsdq sdqsd sqssd qdqsddsds dsdsd sdsdcxcx
+                                The main goals of this platform ,  are presented in two ways.
+                                The first one is related to me, I build this platform to arrange my projects and to be more presice
+                                in presenting my projects and describing them.
+                                The second goal is related to you ,guys. Actually am giving those details and descriptions of each project
+                                to provide support and help to beginners ,who have difficulties to begin a project with any technologie
+                                Not also details of projects are helpful but <Link to='topics/questions'>question</Link> section is available to answer
+                                to your questions in a breve delay and to satisfy your needs.
+                                I will try my best to cover most popular technologies such as react nodejs angular...
                                  </p>
                         </div>
-                        <div style={{ paddingTop: '50px', whiteSpace: 'pre-wrap' }}>
-                            <h2 id="interest" className={classes.title}>Interest</h2>
-                            <p className={classes.paragraphe} >
 
-                            </p>
-                        </div>
 
                     </div>
                 </Col>
@@ -115,9 +92,7 @@ const Aboutus = () => {
                         <li className={classes.itemList}>
                             <a className={classes.itemtext} href="#goal"><strong>Goal</strong></a>
                         </li>
-                        <li className={classes.itemList}>
-                            <a className={classes.itemtext} href="#interest"><strong>Interest</strong></a>
-                        </li>
+
                     </ul>
                 </Col>
             </Row>

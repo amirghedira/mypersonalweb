@@ -53,7 +53,7 @@ const Tabs = (props) => {
         return (
 
             <Container style={{ marginTop: '70px', minHeight: '30vh' }}>
-                {context.projects.map(project => {
+                {context.projects.slice(0).reverse().map(project => {
                     return <CardComponent
                         key={project._id}
                         _id={project._id}

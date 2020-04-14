@@ -9,9 +9,7 @@ const PostCard = (props) => {
     const isadmin = props.autor === 'admin' ? true : false;
     const [width, setwitdh] = React.useState(window.innerWidth)
 
-    const handleFunction = function () {
-        setwitdh(window.innerWidth)
-    }
+
     React.useEffect(() => {
         window.addEventListener('resize', handleFunction)
         return () => {
@@ -19,6 +17,13 @@ const PostCard = (props) => {
         }
     }, [])
 
+    const enderText = (content) => {
+        const reg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
+        return content.replace(reg, "<a href='$1$2'>$1$2</a>");
+    }
+    const handleFunction = function () {
+        setwitdh(window.innerWidth)
+    }
 
     return (
         <div>
@@ -126,8 +131,10 @@ const PostCard = (props) => {
                     }
 
                     <Col >
-                        <pre style={{ whiteSpace: 'pre-wrap', marginTop: '40px', paddingLeft: '' }}>
-                            {props.content}
+                        <pre style={{ whiteSpace: 'pre-wrap', marginTop: '40px', paddingLeft: '20px', fontSize: '14px' }}>
+                            <div dangerouslySetInnerHTML={{
+                                __html: enderText(props.content)
+                            }} />
                         </pre>
                     </Col>
 

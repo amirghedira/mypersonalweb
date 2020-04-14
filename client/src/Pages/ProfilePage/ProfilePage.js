@@ -318,7 +318,7 @@ const ProfilePage = () => {
                                                     <Col md="12">
                                                         {
                                                             context.UserProfile.news.length > 0 ?
-                                                                context.UserProfile.news.map((onenews) => {
+                                                                context.UserProfile.news.slice(0).reverse().map((onenews) => {
                                                                     return (
                                                                         <Row key={onenews._id} style={{ backgroundColor: "white", boxShadow: '0px 5px 25px 0px rgba(0, 0, 0, 0.2)', marginTop: '20px' }}>
                                                                             <Col >
