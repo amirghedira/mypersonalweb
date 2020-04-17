@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import GlobalContext from '../../../../components/context/GlobalContext'
+import GlobalContext from 'context/GlobalContext'
 import {
     Card,
     CardHeader,
@@ -160,24 +160,24 @@ const CardComponent = (props) => {
                                         onMouseEnter={() => { setfocusedDownload(true) }}
                                         onMouseLeave={() => { setfocusedDownload(false) }}
                                         style={{ margin: 'auto', backgroundColor: focusedDownload ? '#d9d9d9' : 'transparent', color: 'black', width: '100%', fontWeight: 'bold' }}>
-                                        <i className="fas fa-download fa-2x" style={{ marginRight: '10px' }}></i>
+                                        <i className="fas fa-download fa-2x" ></i>
 
-                                    Download
-                                </Button>
+                                        <p style={{ margin: '0', fontWeight: '700' }}>Download</p>
+                                    </Button>
                                 </a>
 
                             </Col>
                             <Col style={{ dispaly: 'flex', marginLeft: '10px', marginRight: '10px' }}  >
-                                <Link to={"/details/" + props._id} style={{ color: 'black', textDecoration: 'none' }}>
+                                <Link to={"/projects/" + props._id} style={{ color: 'black', textDecoration: 'none' }}>
                                     <Button
                                         style={{ margin: 'auto', backgroundColor: focusedReadmore ? '#d9d9d9' : 'transparent', color: 'black', width: '100%', fontWeight: 'bold' }}
                                         onMouseEnter={() => { setfocusedReadmore(true) }}
                                         onMouseLeave={() => { setfocusedReadmore(false) }}
                                     >
-                                        <i className="fas fa-book-reader fa-2x" style={{ marginRight: '10px' }}></i>
-                                        Read More
+                                        <i className="fas fa-book-reader fa-2x" ></i>
+                                        <p style={{ margin: '0', fontWeight: '700' }}>Read More</p>
 
-                                </Button>
+                                    </Button>
                                 </Link>
                             </Col>
 
@@ -186,9 +186,9 @@ const CardComponent = (props) => {
                                     onMouseEnter={() => { setfocusedGithub(true) }}
                                     onMouseLeave={() => { setfocusedGithub(false) }}
                                     style={{ margin: 'auto', backgroundColor: focusedGithub ? '#d9d9d9' : 'transparent', color: 'black', width: '100%', fontWeight: 'bold' }}>
-                                    <i className="fab fa-github fa-2x" style={{ marginRight: '10px' }}></i>
+                                    <i className="fab fa-github fa-2x" ></i>
+                                    <p style={{ margin: '0', fontWeight: '700', fontSize: '14px' }}>Github</p>
 
-                                    Github
                                 </Button>
                             </Col>
                         </Row>

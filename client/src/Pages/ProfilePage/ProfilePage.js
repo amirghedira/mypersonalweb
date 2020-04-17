@@ -18,7 +18,7 @@ import {
 
 // core components
 import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
-import GlobalContext from 'components/context/GlobalContext'
+import GlobalContext from 'context/GlobalContext'
 import classes from './Profilepage.module.css'
 
 const ProfilePage = () => {
@@ -117,7 +117,7 @@ const ProfilePage = () => {
                                                         })
                                                     }}
                                                 >
-                                                    <h4 style={{ margin: 'auto', color: MenuButtonClicked.photos ? 'white' : 'black' }}>photos</h4>
+                                                    <h4 style={{ margin: 'auto', color: MenuButtonClicked.photos ? 'white' : 'black' }}>Photos</h4>
                                                 </NavLink>
                                             </NavItem>
                                             <NavItem>
@@ -235,7 +235,7 @@ const ProfilePage = () => {
 
                                                         </div>
                                                         <div style={{ margin: '20px' }}>
-                                                            <h4>Contact</h4>
+                                                            <h4>Contact Methods</h4>
                                                             <hr style={{ backgroundColor: '#bfbfbf' }} />
                                                             <Row style={{ paddingLeft: '20px' }}>
                                                                 <Col>

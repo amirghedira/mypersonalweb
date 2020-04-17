@@ -37,13 +37,13 @@ const CommentSection = (props) => {
 
     const submitCommmentFunction = (obj) => {
         if (obj.autor === "")
-            SeterrorMessage('Taper votre nom')
+            SeterrorMessage('Write your name')
         else if (obj.autor === 'admin' && !props.token)
-            SeterrorMessage("Ce nom n'est pas valide")
+            SeterrorMessage("Invalide name")
         else if (obj.content === "")
-            SeterrorMessage('Taper votre commentaire')
+            SeterrorMessage('Write your comment')
         else if (mostlargeword(obj.autor) > 14)
-            SeterrorMessage('Nom trop long , séparé le par des espaces')
+            SeterrorMessage('Name too large , use spaces')
         else {
             props.submitCommment(obj)
             SetcommentFocus(false)

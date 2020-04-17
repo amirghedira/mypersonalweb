@@ -1,6 +1,6 @@
 import React from "react";
 import CardComponent from './CardComponent/CardComponent'
-import GlobalContext from '../../../components/context/GlobalContext'
+import GlobalContext from 'context/GlobalContext'
 import Loading from '../../LoadingPage/LoadingPage'
 import axios from '../../../utils/axios'
 // reactstrap components

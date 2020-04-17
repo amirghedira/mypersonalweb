@@ -65,7 +65,7 @@ const Aboutus = () => {
                             </pre>
                         </div>
                         <div id="goal" style={{ paddingTop: '50px' }}>
-                            <h2 className={classes.title}>Goal</h2>
+                            <h2 className={classes.title}>Goals</h2>
                             <p className={classes.paragraphe} >
                                 The main goals of this platform ,  are presented in two ways.
                                 The first one is related to me, I build this platform to arrange my projects and to be more presice
@@ -90,7 +90,7 @@ const Aboutus = () => {
                             <a className={classes.itemtext} href="#rules"><strong>Rules</strong></a>
                         </li>
                         <li className={classes.itemList}>
-                            <a className={classes.itemtext} href="#goal"><strong>Goal</strong></a>
+                            <a className={classes.itemtext} href="#goal"><strong>Goals</strong></a>
                         </li>
 
                     </ul>

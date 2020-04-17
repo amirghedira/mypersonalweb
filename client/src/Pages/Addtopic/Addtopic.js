@@ -3,11 +3,12 @@ import classes from './Addtopic.module.css';
 import TextareaAutosize from 'react-autosize-textarea';
 import { Container, Row, Col, Input, Label, Button, Nav, NavItem, NavLink } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import GlobalContext from '../../components/context/GlobalContext'
+import GlobalContext from 'context/GlobalContext'
 import { Redirect } from 'react-router';
 import Loading from '../LoadingPage/LoadingPage'
 import Banned from '../../components/Banned/Banned'
 import axios from '../../utils/axios'
+
 const AddTopic = (props) => {
     const [errmessage, SeterrorMessage] = React.useState('');
     const [commentContentfocus, setcommentContentfocus] = React.useState(false)
@@ -68,6 +69,9 @@ const AddTopic = (props) => {
                     replies: []
                 }).then(result => {
                     setRedirectPost({ state: true, path: `/${Type}/${result.data.id}` })
+                    if (obj.autor !== 'admin')
+                        context.addNotificationTopic(result.data.id, obj.autor, Type)
+
 
                 })
                 .catch(err => {

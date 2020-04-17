@@ -1,8 +1,10 @@
 import React from "react";
 import LoginModal from '../loginModal/LoginModal'
-import GlobalContext from 'components/context/GlobalContext'
+import GlobalContext from 'context/GlobalContext'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { CommonLoading } from 'react-loadingg';
+
 // reactstrap components
 import {
     Collapse,
@@ -16,7 +18,8 @@ import {
     DropdownToggle,
     DropdownMenu,
     UncontrolledDropdown,
-    UncontrolledTooltip
+    UncontrolledTooltip,
+    Badge
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { RotateCircleLoading } from 'react-loadingg';
@@ -28,11 +31,17 @@ const IndexNavbar = () => {
     const [showloginmodal, setshowloginmodal] = React.useState(false);
     const [LoadingImage, SetLoadingImage] = React.useState(true)
     const [navbarColor, setNavbarColor] = React.useState('navbar-transparent');
+    const [LoadingNotification, SetLoadingNotification] = React.useState(true)
     React.useEffect(() => {
         if (context.UserProfile)
             SetLoadingImage(false)
 
-    }, [context.token, context.UserProfile, context.currentPage])
+        if (context.Notifications)
+            SetLoadingNotification(false)
+
+
+    }, [context.token, context.UserProfile, context.Notifications])
+
 
     React.useEffect(() => {
         const updateNavbarColor = () => {
@@ -54,8 +63,6 @@ const IndexNavbar = () => {
         };
 
     });
-
-
     const DisconnectHandler = () => {
         toast.success("Successfully disconnected", { position: toast.POSITION.BOTTOM_RIGHT })
         context.disconnectHandler();
@@ -146,7 +153,9 @@ const IndexNavbar = () => {
                 </DropdownItem>
                     </DropdownMenu>
                 </UncontrolledDropdown>
-            </Nav>)
+            </Nav>
+
+        )
     }
     else
         profileImageComponent =
@@ -155,7 +164,7 @@ const IndexNavbar = () => {
                     onClick={hideshowHandler}
                     id="login-tooltip"
                 >
-                    <i className="fas fa-user fa-2x"></i>
+                    <i className="fas fa-user fa-2x" style={{ marginTop: '5px' }}></i>
                 </NavLink>
                 <UncontrolledTooltip target="#login-tooltip">
                     Staff Login
@@ -253,6 +262,73 @@ const IndexNavbar = () => {
                                     <p>Profile</p>
                                 </NavLink>
                             </NavItem>
+                            {context.token ?
+                                <NavItem>
+                                    <Nav
+                                        className="nav-pills-info nav-pills-just-icons"
+                                        style={{ marginTop: '7px' }}
+                                    >
+                                        <UncontrolledDropdown nav>
+                                            <DropdownToggle
+
+                                                nav
+                                                style={{ display: 'flex' }}
+
+                                            >
+                                                <i className="fas fa-bell fa-2x" style={{ margin: 'auto', size: '20px' }}>
+                                                    {!LoadingNotification && context.Notifications.filter(notification => { return notification.read === false }).length > 0 ?
+                                                        < Badge style={{ witdh: '20px', height: '20px', borderRadius: '100px', fontSize: '14px' }} color="danger">
+                                                            {
+                                                                context.Notifications.filter(notification => { return notification.read === false }).length
+                                                            }
+                                                        </Badge>
+                                                        : null}
+                                                </i>
+
+
+                                            </DropdownToggle>
+                                            <DropdownMenu right style={{ minHeight: '180px', minWidth: '280px', maxHeight: '250px', overflowY: 'auto', padding: '0', display: !LoadingNotification && context.Notifications.length === 0 ? 'flex' : 'block' }}>
+                                                {
+                                                    !LoadingNotification ?
+                                                        context.Notifications.length > 0 ?
+                                                            context.Notifications.slice(0).reverse().map(notification => {
+                                                                return (
+                                                                    <Link key={notification._id} to={notification.link}
+                                                                        style={{ color: 'black' }}
+                                                                        onClick={() => {
+                                                                            setCollapseOpen(false)
+
+                                                                        }}>
+                                                                        <DropdownItem
+                                                                            style={{ minHeight: '50px', backgroundColor: !notification.read ? '#f2f2f2' : 'white', margin: '0' }}
+                                                                            onClick={() => { context.makeasRead(notification._id) }}>
+
+                                                                            {notification.read ?
+                                                                                notification.content
+                                                                                :
+                                                                                <strong> {notification.content}</strong>
+                                                                            }
+                                                                        </DropdownItem>
+                                                                        <hr style={{ margin: '0', backgroundColor: '#cccccc' }} />
+                                                                    </Link>
+                                                                )
+                                                            })
+
+
+                                                            :
+                                                            <DropdownItem style={{ margin: 'auto', backgroundColor: 'white' }}>No notifications available yet..</DropdownItem>
+                                                        :
+                                                        <CommonLoading />
+
+
+                                                }
+                                            </DropdownMenu>
+                                        </UncontrolledDropdown>
+                                    </Nav>
+                                </NavItem>
+                                :
+                                null
+                            }
                             {profileImageComponent}
                         </Nav>
                     </Collapse>

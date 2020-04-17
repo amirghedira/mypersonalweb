@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './SidebarRight.module.css';
 import { Row, Col } from 'reactstrap';
-import GlobalContext from 'components/context/GlobalContext'
+import GlobalContext from 'context/GlobalContext'
 import axios from 'utils/axios'
 import loadingimage from 'assets/img/loading.gif'
 const Sidebar = (props) => {
@@ -118,7 +118,7 @@ const Sidebar = (props) => {
                                     <img src={loadingimage} style={{ height: '25px', width: '25px' }} alt='...' />
                                     :
                                     mostSeen ?
-                                        <a href={`/details/${mostSeen._id}`} className={classes.items}>{mostSeen.name}</a>
+                                        <a href={`/projects/${mostSeen._id}`} className={classes.items}>{mostSeen.name}</a>
                                         :
 
                                         <p className={classes.textItem}>No projects yet!</p>
@@ -144,7 +144,7 @@ const Sidebar = (props) => {
                                     <img src={loadingimage} style={{ height: '25px', width: '25px' }} alt='...' />
                                     :
                                     mostDownload ?
-                                        <a href={`/details/${mostDownload._id}`} className={classes.items}>{mostDownload.name}</a>
+                                        <a href={`/projects/${mostDownload._id}`} className={classes.items}>{mostDownload.name}</a>
                                         :
                                         <p className={classes.textItem}>No projects yet!</p>
 

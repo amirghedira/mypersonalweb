@@ -2,13 +2,14 @@ import React from 'react';
 import classes from './TopicsPage.module.css';
 import Topicitem from '../../components/Topicitem/Topicitem'
 import { Container, Row, Col, Button, PaginationLink, PaginationItem, Pagination, Nav, NavItem, NavLink } from 'reactstrap'
-import GlobalContext from '../../components/context/GlobalContext';
+import GlobalContext from 'context/GlobalContext';
 import axios from '../../utils/axios'
 import { Link } from 'react-router-dom'
 import Loading from '../LoadingPage/LoadingPage'
 import Banned from '../../components/Banned/Banned'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 const TopicPage = (props) => {
 
     const context = React.useContext(GlobalContext)
@@ -20,14 +21,15 @@ const TopicPage = (props) => {
     const Type = props.match.params.type;
     const indexofLastPost = currentPage * postsPerPage;
     const indexofFirstPost = indexofLastPost - postsPerPage;
-
     const [width, setwitdh] = React.useState(window.innerWidth)
+
 
     const handleFunction = function () {
         setwitdh(window.innerWidth)
     }
 
     React.useEffect(() => {
+
         window.addEventListener('resize', handleFunction)
         return () => {
             window.removeEventListener('resize', handleFunction);
@@ -67,8 +69,27 @@ const TopicPage = (props) => {
         return function cleanup() {
             document.body.classList.remove("index-page");
             document.body.classList.remove("sidebar-collapse");
+
         };
     }, [Type])
+
+    React.useEffect(() => {
+
+        return () => {
+            if (context.socket)
+                context.socket.off('sendtopics')
+        }
+    }, [context.socket])
+    React.useEffect(() => {
+        if (context.socket && Topics) {
+            context.socket.off('sendtopics')
+            context.socket.on('sendtopics', (topics) => {
+                setTopics(topics)
+                SetcurrentPosts(topics.slice(indexofFirstPost, indexofLastPost))
+
+            })
+        }
+    }, [context.socket, indexofFirstPost, indexofLastPost, Topics])
 
 
     const headers = {
@@ -88,7 +109,7 @@ const TopicPage = (props) => {
                     toast.success('Topic openned.', { position: toast.POSITION.BOTTOM_RIGHT })
                 else
                     toast.success('Topic closed.', { position: toast.POSITION.BOTTOM_RIGHT })
-
+                context.socket.emit('sendtopics', newTopics)
                 setTopics(newTopics)
                 SetcurrentPosts(newTopics.slice(indexofFirstPost, indexofLastPost))
             })
@@ -119,6 +140,7 @@ const TopicPage = (props) => {
                     toast.success('Topic pinned.', { position: toast.POSITION.BOTTOM_RIGHT })
                 else
                     toast.success('Topic unpinned.', { position: toast.POSITION.BOTTOM_RIGHT })
+                context.socket.emit('sendtopics', newTopics)
                 setTopics(newTopics)
                 SetcurrentPosts(newTopics.slice(indexofFirstPost, indexofLastPost))
 
@@ -135,13 +157,16 @@ const TopicPage = (props) => {
             .then(result => {
                 let newTopics = Topics;
                 const index = newTopics.findIndex(topic => { return topic._id === id })
+                context.deleteTopicNotifications(Topics[index]._id, Type)
                 newTopics.splice(index, 1);
                 setTopics(newTopics)
+                context.socket.emit('sendtopics', newTopics)
                 toast.success('Topic deleted.', { position: toast.POSITION.BOTTOM_RIGHT })
                 SetcurrentPosts(newTopics.slice(indexofFirstPost, indexofLastPost))
 
             })
             .catch(err => {
+                console.log(err)
                 context.ErrorAccureHandler(err.response.status, err.response.statusText);
             })
 

@@ -5,12 +5,13 @@ import PostCard from '../../components/PostCard/PostCard'
 import CommentSection from '../../components/CommentSection/CommentSection'
 import axios from '../../utils/axios'
 import { Link } from 'react-router-dom'
-import GlobalContext from '../../components/context/GlobalContext'
+import GlobalContext from 'context/GlobalContext'
 import Loading from '../LoadingPage/LoadingPage'
 import { Redirect } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FormatDate from 'utils/FormatDate'
+
 
 const TopicPage = (props) => {
     const context = React.useContext(GlobalContext)
@@ -26,6 +27,7 @@ const TopicPage = (props) => {
     }
 
     React.useEffect(() => {
+
         window.addEventListener('resize', handleFunction)
         return () => {
             window.removeEventListener('resize', handleFunction);
@@ -33,16 +35,18 @@ const TopicPage = (props) => {
     }, [])
 
     React.useEffect(() => {
+
         axios.get('/topic/' + props.match.params.id)
             .then(result => {
+                console.log(result)
                 setTopic(result.data.result);
                 document.title = result.data.result.title
                 if (context.memberInfo && context.UserProfile)
                     setIsloading(false);
             })
             .catch(err => {
-                context.ErrorAccureHandler();
-                setIsloading(false)
+                context.ErrorAccureHandler(err.response.status, err.response.data.message)
+
             })
     }, [context, props.match.params.id])
 
@@ -55,8 +59,30 @@ const TopicPage = (props) => {
         return function cleanup() {
             document.body.classList.remove("index-page");
             document.body.classList.remove("sidebar-collapse");
+
+
         };
     }, [])
+
+    React.useEffect(() => {
+        return function cleanup() {
+            if (context.socket) {
+                context.socket.off('sendtopic')
+                context.socket.off('redirect')
+                console.log('cleaned')
+            }
+        }
+    }, [context.socket])
+    React.useEffect(() => {
+        if (context.socket) {
+
+            context.socket.off('sendtopic')
+            context.socket.on('sendtopic', (topic) => {
+                setTopic(topic)
+
+            })
+        }
+    }, [context.socket, Topic])
 
 
     const headers = {
@@ -70,11 +96,15 @@ const TopicPage = (props) => {
 
             axios.patch('/topic/postcomment/' + Topic._id, { ip: context.memberInfo.ip, autor: obj.autor, content: obj.content })
                 .then(response => {
-                    setTopic({
+                    const newTopic = {
                         ...Topic,
                         replies: [...Topic.replies, { _id: response.data.id, ip: context.memberInfo.ip, autor: obj.autor, content: obj.content, date: response.data.date }]
-                    })
+                    }
+                    setTopic(newTopic)
+                    context.socket.emit('sendtopic', newTopic)
 
+                    if (obj.autor !== 'admin')
+                        context.addNotificationReply(response.data.id, obj.autor, Topic._id, Topic.title, type)
                 })
                 .catch(err => {
                     context.ErrorAccureHandler(err.response.status, err.response.message);
@@ -91,11 +121,12 @@ const TopicPage = (props) => {
 
         axios.patch('/topic/topicstate/' + Topic._id, { state: topicstate }, { headers: headers })
             .then(result => {
-
-                setTopic({
+                const newTopic = {
                     ...Topic,
                     state: topicstate
-                })
+                }
+                setTopic(newTopic)
+                context.socket.emit('sendtopic', newTopic)
                 if (topicstate)
                     toast.success('Topic openned.', { position: toast.POSITION.BOTTOM_RIGHT })
                 else
@@ -110,7 +141,12 @@ const TopicPage = (props) => {
 
         axios.delete('/topic/' + Topic._id, { headers: headers })
             .then(result => {
+
+                context.deleteTopicNotifications(Topic._id, type)
                 setRedirect(true)
+
+
+
             })
             .catch(err => {
                 context.ErrorAccureHandler();
@@ -125,12 +161,15 @@ const TopicPage = (props) => {
         newReplies.splice(replyIndex, 1)
         axios.patch('/topic/deletecomment/' + Topic._id, { newreplies: newReplies }, { headers: headers })
             .then(result => {
-
-                setTopic({
+                const newTopic = {
                     ...Topic,
                     replies: newReplies
-                })
+                }
+                setTopic(newTopic)
+                context.socket.emit('sendtopic', newTopic)
+
                 toast.success('Reply deleted.', { position: toast.POSITION.BOTTOM_RIGHT })
+                context.deleteReplyNotification(replyId)
 
 
             })

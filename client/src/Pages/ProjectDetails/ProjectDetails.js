@@ -17,7 +17,7 @@ import DeleteModal from '../../components/DeleteModal/DeleteModal'
 import ProjectField from '../../components/ProjectField/ProjectField';
 import ProjectColumn from '../../components/ProjectColumn/ProjectColumn';
 import { ToastContainer, toast } from 'react-toastify';
-import GlobalContext from 'components/context/GlobalContext'
+import GlobalContext from 'context/GlobalContext'
 import 'react-toastify/dist/ReactToastify.css';
 import PostCard from 'components/PostCard/PostCard';
 import CommentSection from 'components/CommentSection/CommentSection'
@@ -71,9 +71,13 @@ const Details = (props) => {
     React.useEffect(() => {
         if (context.projects && context.UserProfile) {
             const index = context.projects.findIndex(project => { return project._id === props.match.params.id })
-            document.title = context.projects[index].name
-            setProject(context.projects[index])
-            SetisLoadingPage(false)
+            if (index >= 0) {
+                document.title = context.projects[index].name
+                setProject(context.projects[index])
+                SetisLoadingPage(false)
+            } else
+                context.ErrorAccureHandler(404, 'Project not found')
+
         }
     }, [props.match.params.id, context])
     const showprojectimageHandler = (image) => {
@@ -339,7 +343,7 @@ const Details = (props) => {
                                                     content={project.overview}
                                                     icon={<i className="fas fa-globe fa-3x" style={{ marginBottom: '20px' }}></i>} />
                                                 <ProjectField key='2'
-                                                    sectionname="Features/technologies"
+                                                    sectionname="Features / Technologies"
                                                     propname='features'
                                                     loadingstatus={isloadingFeatures}
                                                     logstatus={context.token}
@@ -348,7 +352,7 @@ const Details = (props) => {
                                                     icon={<i className="fas fa-hockey-puck fa-3x" style={{ marginBottom: '20px' }}></i>} />
 
                                                 <ProjectField key='3'
-                                                    sectionname="PlatForm & libraries"
+                                                    sectionname="Platform & Libraries"
                                                     propname='platform'
                                                     loadingstatus={isloadingplatform}
                                                     logstatus={context.token}

@@ -1,7 +1,7 @@
 import React from "react";
 import Tabs from "./Tabs/Tabs";
 import Support from "../../components/Support/Support.js";
-import GlobalContext from "components/context/GlobalContext";
+import GlobalContext from "context/GlobalContext";
 import { Row, Col } from "reactstrap";
 import SidebarLeft from '../../components/SidebarLeft/SidebarLeft'
 import SidebarRight from '../../components/SidebarRight/SidebarRight'
@@ -34,7 +34,7 @@ function Index() {
             document.body.classList.remove("profile-page");
             document.body.classList.remove("sidebar-collapse");
         };
-    })
+    }, [])
     return (
         <div>
             <div className="wrapper">

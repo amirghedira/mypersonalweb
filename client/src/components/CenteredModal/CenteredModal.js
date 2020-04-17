@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label } from 'reactstrap';
-import GlobalContext from 'components/context/GlobalContext'
+import GlobalContext from 'context/GlobalContext'
 import Loading from '../../Pages/LoadingPage/LoadingPage'
 
 const CenteredModal = (props) => {

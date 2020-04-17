@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './PostCard.module.css';
 import { Nav, Row, Col, UncontrolledDropdown, DropdownMenu, DropdownToggle, DropdownItem, NavItem, NavLink } from 'reactstrap'
-import GlobalContext from 'components/context/GlobalContext'
+import GlobalContext from 'context/GlobalContext'
 import FormatDate from 'utils/FormatDate'
 import { Link } from 'react-router-dom'
 const PostCard = (props) => {
