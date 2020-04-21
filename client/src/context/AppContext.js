@@ -24,7 +24,7 @@ const AppContext = (props) => {
 
     React.useEffect(() => {
 
-        setsocket(io('http://192.168.1.3:5000'))
+        setsocket(io('https://mywebrestapi.herokuapp.com'))
         axios.get('/banned')
             .then(result => {
                 SetBannedUsers(result.data.banned)
@@ -71,9 +71,8 @@ const AppContext = (props) => {
     }, [])
     React.useEffect(() => {
         const publicVadidKey = 'BMUYV7TShfXpU5edFVCfBEO0JwC-kCujoxV6q4pp3WHipuDPF2OE4bMd4LYYsNjKdn9GMtIlxW6vMQinu9qBkUg'
-        // ${process.env.PUBLIC_URL}
         if ('serviceWorker' in navigator)
-            navigator.serviceWorker.register(`/serviceworker.js`, {
+            navigator.serviceWorker.register(`${process.env.PUBLIC_URL}/serviceworker.js`, {
                 scope: '/'
             })
                 .then(register => {
@@ -113,27 +112,34 @@ const AppContext = (props) => {
     }
 
     React.useEffect(() => {
-        if (socket && Notifications && token) {
-            socket.off('sendnotification');
-            socket.on('sendnotification', (notification) => {
-                if (token) {
-                    axios.post('/subscribe', { subscription: subscription, content: notification.content })
-                        .then()
-                        .catch(err => {
-                            ErrorAccureHandler(500, "Connection to server has timedout")
-                        })
-                    setNotifications([...Notifications, notification])
-                }
+        if (socket && Notifications && BannedUsers) {
+            if (token) {
+                socket.off('sendnotification');
+                socket.on('sendnotification', (notification) => {
+                    if (token) {
+                        axios.post('/subscribe', { subscription: subscription, content: notification.content })
+                            .then()
+                            .catch(err => {
+                                ErrorAccureHandler(500, "Connection to server has timedout")
+                            })
+                        setNotifications([...Notifications, notification])
+                    }
 
-            })
-            socket.off('sendprojects');
-            socket.on('sendprojects', (projects) => {
-                setProjects(projects)
-            })
-
+                })
+            } else {
+                socket.off('sendprojects');
+                socket.on('sendprojects', (projects) => {
+                    setProjects(projects)
+                })
+                socket.off('sendbannedmembers')
+                socket.on('sendbannedmembers', (NewBannedUsers) => {
+                    SetBannedUsers(NewBannedUsers)
+                })
+            }
 
         }
-    }, [socket, token, Notifications, subscription])
+
+    }, [socket, token, Notifications, subscription, BannedUsers])
 
 
 
@@ -370,11 +376,16 @@ const AppContext = (props) => {
     }
 
     const unBanMemberHandler = (id) => {
-        axios.delete(`/banned/${id}`)
+        const headers = {
+            'Authorization': 'Bearer ' + token
+        }
+
+        axios.delete(`/banned/${id}`, { headers: headers })
             .then(result => {
                 const index = BannedUsers.findIndex(banneduser => { return banneduser._id === id })
                 let newBannedUsers = BannedUsers;
                 newBannedUsers.splice(index, 1);
+                socket.emit('sendbannedmembers', newBannedUsers)
                 SetBannedUsers(newBannedUsers);
                 setgoload(!goload)
                 toast.success('User is successfully unbanned!', { position: toast.POSITION.BOTTOM_RIGHT })
@@ -386,18 +397,25 @@ const AppContext = (props) => {
 
     const BanMemberHandler = (member) => {
 
+
         let ips = BannedUsers.map(banneduser => { return banneduser.ip })
         if (ips.includes(member.ip)) {
             toast.error('User already banned!', { position: toast.POSITION.BOTTOM_RIGHT })
         }
         else {
-            axios.post('/banned', member)
+            const headers = {
+                'Authorization': 'Bearer ' + token
+            }
+            axios.post('/banned', member, { headers: headers })
                 .then(result => {
-                    SetBannedUsers([...BannedUsers, {
+                    let newBannedUsers = BannedUsers
+                    newBannedUsers.push({
                         ...member,
                         date: result.data.date,
                         _id: result.data._id
-                    }])
+                    })
+                    socket.emit('sendbannedmembers', newBannedUsers)
+                    SetBannedUsers(newBannedUsers)
                     toast.success('User is successfully banned.', { position: toast.POSITION.BOTTOM_RIGHT })
 
                 })

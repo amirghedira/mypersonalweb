@@ -33,14 +33,14 @@ const PostCard = (props) => {
                         <Nav className={classes.Navbar} style={{ minHeight: width < 800 ? '80px' : null, height: 'fit-content' }} expand="lg">
                             {width < 800 ?
                                 <NavItem style={{ display: 'flex' }}>
-                                    <img src={isadmin ? context.UserProfile.profileimage : require("assets/img/default-avatar.png")} style={{ height: '40px', width: '40px', margin: '10px' }} alt="" />
+                                    <img src={isadmin ? context.UserProfile.profileimage : require("assets/img/default-avatar.png")} style={{ height: '40px', width: '40px', margin: '10px', borderRadius: '100px' }} alt="" />
                                 </NavItem>
                                 : null
                             }
-                            <NavItem style={{ marginLeft: '20px', display: width > 525 ? 'flex' : 'flex', padding: '0' }}>
+                            <NavItem style={{ display: width > 525 ? 'flex' : 'flex', width: '170px' }}>
                                 {
-                                    <NavLink to='/amirghedira' style={{ textJustify: 'flex-start', padding: '0', display: width > 525 ? 'flex' : 'block', margin: 'auto' }} tag={isadmin ? Link : 'div'}>
-                                        <strong className={classes.postname} style={{ color: 'white', marginLeft: width > 800 ? '20px' : null, width: '120px', maxWidth: '120px' }}>{
+                                    <NavLink to='/amirghedira' style={{ padding: '0', display: width > 525 ? 'flex' : 'block', margin: 'auto' }} tag={isadmin ? Link : 'div'}>
+                                        <strong className={classes.postname} style={{ textAlign: 'center', color: 'white', width: '120px', maxWidth: '120px' }}>{
                                             isadmin ? context.UserProfile.name : props.autor} </strong>
                                         {width < 525 ?
                                             <div style={{ display: 'block', margin: 'auto' }}>
@@ -62,7 +62,7 @@ const PostCard = (props) => {
 
                                 }
                             </NavItem>
-                            <NavItem style={{ flex: '0.1' }}> </NavItem>
+
                             {width > 525 ?
                                 <NavItem style={{ display: width > 525 ? 'flex' : 'block' }}>
                                     <h5 className={classes.postinfo} style={{ color: 'white', margin: 'auto', paddingLeft: '10px' }}>Posted:{' '}
@@ -122,9 +122,13 @@ const PostCard = (props) => {
                 </Row>
                 <Row className={classes.topicContent}>
                     {width > 800 ?
+
                         <Col md="3" xl="2" style={{ display: 'flex', marginRight: '12px' }}>
 
-                            <img src={isadmin ? context.UserProfile.profileimage : require("assets/img/default-avatar.png")} style={{ height: '220px', width: '150px', margin: 'auto', marginTop: '40px' }} alt="" />
+                            <img src={isadmin ? context.UserProfile.profileimage : require("assets/img/default-avatar.png")}
+                                style={{
+                                    borderRadius: '400px', height: '150px', width: '150px', margin: 'auto', marginTop: '40px'
+                                }} alt="" />
                         </Col>
                         :
                         null

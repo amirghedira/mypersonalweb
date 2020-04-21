@@ -166,8 +166,7 @@ const TopicPage = (props) => {
 
             })
             .catch(err => {
-                console.log(err)
-                context.ErrorAccureHandler(err.response.status, err.response.statusText);
+                context.ErrorAccureHandler(500, "Connection to server timedout");
             })
 
     }

@@ -38,7 +38,6 @@ const TopicPage = (props) => {
 
         axios.get('/topic/' + props.match.params.id)
             .then(result => {
-                console.log(result)
                 setTopic(result.data.result);
                 document.title = result.data.result.title
                 if (context.memberInfo && context.UserProfile)
@@ -69,7 +68,6 @@ const TopicPage = (props) => {
             if (context.socket) {
                 context.socket.off('sendtopic')
                 context.socket.off('redirect')
-                console.log('cleaned')
             }
         }
     }, [context.socket])
@@ -174,8 +172,7 @@ const TopicPage = (props) => {
 
             })
             .catch(err => {
-                console.log(err)
-                context.ErrorAccureHandler();
+                context.ErrorAccureHandler(500, "Connection to server timedout");
             })
 
 
@@ -219,12 +216,12 @@ const TopicPage = (props) => {
 
                         <Col className="ml-auto mr-auto" md="6" xl="1" style={{ justifyContent: 'flex-start', display: 'flex' }}>
 
-                            <div style={{ borderStyle: 'solid', borderColor: '#cccccc', width: '50px', height: '50px', borderWidth: '2px', margin: '0' }}>
+                            <div style={{ width: '50px', height: '50px', margin: '0' }}>
                                 {
                                     Topic.autor === 'admin' ?
-                                        <img src={context.UserProfile.profileimage} style={{ height: '50px', width: '50px' }} alt="" />
+                                        <img src={context.UserProfile.profileimage} style={{ height: '50px', width: '50px', borderRadius: '100px' }} alt="" />
                                         :
-                                        <img src={require("assets/img/default-avatar.png")} style={{ height: '50px', width: '50px' }} alt="" />
+                                        <img src={require("assets/img/default-avatar.png")} style={{ height: '50px', width: '50px', borderRadius: '100px' }} alt="" />
                                 }
                             </div>
 

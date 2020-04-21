@@ -1239,7 +1239,7 @@ const AccountSettings = () => {
                                                             {
                                                                 context.BannedUsers.map(banneduser => {
                                                                     return (
-                                                                        <tr>
+                                                                        <tr key={banneduser._id}>
                                                                             <td>{banneduser.ip}</td>
                                                                             <td>{banneduser.name}</td>
                                                                             <td>{banneduser.content}</td>
