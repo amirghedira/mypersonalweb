@@ -84,6 +84,7 @@ const Details = (props) => {
         setShowprojectimage(
             <Lightbox
                 mainSrc={image}
+                enableZoom={false}
                 onCloseRequest={() => setShowprojectimage(null)} />
         )
 
@@ -258,8 +259,9 @@ const Details = (props) => {
 
                                                             <input
                                                                 style={{ display: 'none' }}
-                                                                onChange={(event) => { context.addprojectImage(project._id, event.target.files[0]) }}
+                                                                onChange={(event) => { context.addprojectImage(project._id, event.target.files) }}
                                                                 ref={inputFile}
+                                                                multiple
                                                                 type="file" />
                                                         </Col>
 

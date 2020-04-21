@@ -53,6 +53,7 @@ const ProfilePage = () => {
         setShowimage(
             <Lightbox
                 mainSrc={image}
+                enableZoom={false}
                 onCloseRequest={() => setShowimage(null)} />
         )
 

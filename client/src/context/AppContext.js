@@ -24,7 +24,7 @@ const AppContext = (props) => {
 
     React.useEffect(() => {
 
-        setsocket(io('https://mywebrestapi.herokuapp.com'))
+        setsocket(io('http://localhost:5000'))
         axios.get('/banned')
             .then(result => {
                 SetBannedUsers(result.data.banned)
@@ -247,15 +247,17 @@ const AppContext = (props) => {
 
 
     }
-    const addprojectImageHandler = (projectid, image) => {
+    const addprojectImageHandler = (projectid, images) => {
 
         const headers = {
             'Authorization': 'Bearer ' + token
         }
-
         const fd = new FormData();
-        fd.append('projectimage', image)
-        axios.patch('/project/addprojectimage/' + projectid, fd, { headers: headers })
+        if (images)
+            for (const key of Object.keys(images)) {
+                fd.append('projectimages', images[key])
+            }
+        axios.patch('/project/addprojectimages/' + projectid, fd, { headers: headers })
             .then(result => {
                 const index = projects.findIndex(project => { return project._id === projectid })
                 UpdateProjects(index, {

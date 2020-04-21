@@ -182,14 +182,16 @@ const CardComponent = (props) => {
                             </Col>
 
                             <Col style={{ dispaly: 'flex', marginLeft: '10px', marginRight: '10px' }}  >
-                                <Button
-                                    onMouseEnter={() => { setfocusedGithub(true) }}
-                                    onMouseLeave={() => { setfocusedGithub(false) }}
-                                    style={{ margin: 'auto', backgroundColor: focusedGithub ? '#d9d9d9' : 'transparent', color: 'black', width: '100%', fontWeight: 'bold' }}>
-                                    <i className="fab fa-github fa-2x" ></i>
-                                    <p style={{ margin: '0', fontWeight: '700', fontSize: '14px' }}>Github</p>
+                                <a href={props.github} target="_blank" rel="noopener noreferrer" style={{ color: 'black', textDecoration: 'none' }}>
+                                    <Button
+                                        onMouseEnter={() => { setfocusedGithub(true) }}
+                                        onMouseLeave={() => { setfocusedGithub(false) }}
+                                        style={{ margin: 'auto', backgroundColor: focusedGithub ? '#d9d9d9' : 'transparent', color: 'black', width: '100%', fontWeight: 'bold' }}>
+                                        <i className="fab fa-github fa-2x" ></i>
+                                        <p style={{ margin: '0', fontWeight: '700', fontSize: '14px' }}>Github</p>
 
-                                </Button>
+                                    </Button>
+                                </a>
                             </Col>
                         </Row>
                         <hr style={{ maxWidth: '90%', marginTop: '0', marginBottom: '20px' }} />

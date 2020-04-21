@@ -174,7 +174,6 @@ const AccountSettings = () => {
         if (selectedimage) {
             const fd = new FormData();
             fd.append("bgimage", selectedimage);
-            console.log(context.UserProfile.backgroundimage)
             fd.append("oldimagelink", context.UserProfile.backgroundimage.split('/')[7].split('.')[0])
             const headers = {
                 'Authorization': 'Bearer ' + context.token
