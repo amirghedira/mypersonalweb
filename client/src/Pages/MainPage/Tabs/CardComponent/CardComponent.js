@@ -17,7 +17,8 @@ import {
     CardFooter
 } from "reactstrap";
 import TextareaAutosize from 'react-autosize-textarea/lib';
-import FormatDate from 'utils/FormatDate'
+import FormatDate from 'utils/FormatDate';
+import classes from './CardComponent.module.css';
 
 
 const CardComponent = (props) => {
@@ -142,7 +143,7 @@ const CardComponent = (props) => {
                             </div>
 
                             :
-                            <pre style={{ whiteSpace: 'pre-wrap' }}>
+                            <pre className={classes.textContent}>
                                 {props.summary}
                             </pre>
                         }

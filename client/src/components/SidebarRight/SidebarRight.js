@@ -109,11 +109,11 @@ const Sidebar = (props) => {
                         <Row>
 
 
-                            <Col xs="6">
+                            <Col xs="6" xl="6">
                                 <p className={classes.titles}>Most seen project</p>
                             </Col>
 
-                            <Col>
+                            <Col xs="6" xl="6">
                                 {!topicCounts || !context.projects ?
                                     <img src={loadingimage} style={{ height: '25px', width: '25px' }} alt='...' />
                                     :
@@ -135,11 +135,11 @@ const Sidebar = (props) => {
                         <Row>
 
 
-                            <Col xs="6">
+                            <Col xs="6" xl="6">
                                 <p className={classes.titles}>Most Downloaded project</p>
                             </Col>
 
-                            <Col>
+                            <Col xs="6" xl="6">
                                 {!topicCounts ?
                                     <img src={loadingimage} style={{ height: '25px', width: '25px' }} alt='...' />
                                     :

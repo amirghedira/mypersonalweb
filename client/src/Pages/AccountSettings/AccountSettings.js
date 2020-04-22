@@ -34,6 +34,8 @@ const AccountSettings = () => {
     const [projectErrField, SetProjectErrField] = React.useState('')
     const [selectedimage, setselectedimage] = React.useState(null);
     const [NewscontentFocused, setNewscontentFocused] = React.useState(false)
+    const [addSkill, setaddSkill] = React.useState(false)
+    const [iconFile, setIconfile] = React.useState(null)
     const [MenuButtonClicked, setMenuButtonClicked] = React.useState({
         general: true,
         photosetting: false,
@@ -196,6 +198,44 @@ const AccountSettings = () => {
         } else {
             toast.error('No files entered', { position: toast.POSITION.BOTTOM_RIGHT })
         }
+
+    }
+    const deleteSkillHandler = (id) => {
+        const headers = {
+            'Authorization': 'Bearer ' + context.token
+        }
+        axios.delete('/user/deleteskill/' + id, { headers: headers, onUploadProgress: onUploadProgress })
+            .then(result => {
+
+                context.UpdateProfile({
+                    ...context.UserProfile,
+                    skills: [...result.data.skills]
+                })
+                setprogress(0)
+
+            })
+            .catch(err => {
+                context.ErrorAccureHandler()
+            });
+    }
+    const addIconHandler = (desc) => {
+        const fd = new FormData();
+        const headers = {
+            'Authorization': 'Bearer ' + context.token
+        }
+        fd.append("skillicon", iconFile);
+        fd.append("description", desc);
+        axios.patch('/user/addskill', fd, { headers: headers, onUploadProgress: onUploadProgress })
+            .then(result => {
+                context.UpdateProfile({
+                    ...context.UserProfile,
+                    skills: [...context.UserProfile.skills, result.data.skill]
+                })
+                setprogress(0)
+            })
+            .catch(err => {
+                context.ErrorAccureHandler()
+            });
 
     }
     const editprofileImageHandler = (file) => {
@@ -651,14 +691,6 @@ const AccountSettings = () => {
                                                 </Row>
                                                 <Row style={{ padding: '0px 0px 0px 120px' }}>
                                                     <Col xs="3">
-                                                        <h5 className={classes.itemsTitle}>Interest</h5>
-                                                    </Col>
-                                                    <Col xs="9">
-                                                        <InputField id="interest" value={context.UserProfile.interest} editable={editablePersonal} type="text" />
-                                                    </Col>
-                                                </Row>
-                                                <Row style={{ padding: '0px 0px 0px 120px' }}>
-                                                    <Col xs="3">
                                                         <h5 className={classes.itemsTitle}>About me</h5>
                                                     </Col>
                                                     <Col xs="9">
@@ -672,7 +704,6 @@ const AccountSettings = () => {
                                                                 savePersonalHandler([
                                                                     { propName: 'title', value: document.getElementById('title').value },
                                                                     { propName: 'aboutme', value: document.getElementById('aboutme').value },
-                                                                    { propName: 'interest', value: document.getElementById('interest').value },
                                                                     { propName: 'birthday', value: document.getElementById('birthday').value },
                                                                     { propName: 'name', value: document.getElementById('name').value },
                                                                     { propName: 'gender', value: document.getElementById('gender').value }
@@ -760,6 +791,91 @@ const AccountSettings = () => {
                                                     }
 
                                                 </Row>
+
+
+                                            </Col>
+                                        </Row>
+                                        <Row className={classes.settingsCards}>
+                                            <Col >
+                                                <Row style={{ paddingLeft: '20px' }}>
+
+                                                    <Col xs="9">
+                                                        <h4 className={classes.sectionTitel}>Skills</h4>
+                                                    </Col>
+                                                    < Col xs="3" style={{ display: 'flex', alignItems: 'center' }}>
+                                                        <Button color="warning" onClick={() => { setaddSkill(true) }}><strong>Add new skill</strong></Button>
+                                                    </Col>
+
+
+                                                </Row>
+
+                                                {context.UserProfile.skills.length > 0 ?
+                                                    context.UserProfile.skills.map(skill => {
+                                                        return (
+                                                            <Row key={skill._id} style={{ padding: '0px 0px 0px 120px', marginBottom: '20px' }}>
+                                                                <Col style={{ display: 'flex', alignItems: 'center' }}>
+                                                                    <img src={skill.icon} style={{ height: '40px', width: '40px' }} alt='...' />
+                                                                </Col>
+                                                                <Col style={{ display: 'flex', alignItems: 'center' }}>
+                                                                    <InputField id="icondescription" value={skill.description} type="text" />
+                                                                </Col>
+                                                                <Col style={{ display: 'flex', alignItems: 'center' }}>
+                                                                    <i className="far fa-trash-alt" onClick={() => { deleteSkillHandler(skill._id) }}></i>
+                                                                </Col>
+                                                            </Row>
+                                                        )
+                                                    }) : null}
+                                                {
+                                                    addSkill ?
+                                                        <Row style={{ marginTop: '40px' }}>
+                                                            <Col xs="4" style={{ display: 'flex', alignItems: 'center' }}>
+                                                                <input id="iconfile" type="file" onChange={(event) => { setIconfile(event.target.files[0]) }} />
+                                                            </Col>
+                                                            <Col xs="4" style={{ display: 'flex', alignItems: 'center' }}>
+                                                                <Input id="description" placeholder="description" type="text" />
+                                                            </Col>
+                                                            <Col xs="4" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                                                                <Button onClick={() => addIconHandler(document.getElementById('description').value)}><stong>Add</stong></Button>
+                                                            </Col>
+                                                        </Row>
+                                                        : null
+
+                                                }
+
+                                                <Row >
+                                                    {editableUsername || editablePassword ?
+                                                        <div style={{ margin: 'auto' }}>
+                                                            <Button color="info" onClick={() => {
+                                                                if (editableUsername && !editablePassword)
+                                                                    saveSecurityHandler(
+                                                                        {
+                                                                            username: document.getElementById('username').value
+                                                                        }
+                                                                    )
+                                                                else if (editablePassword)
+                                                                    saveSecurityHandler(
+                                                                        {
+                                                                            oldpassword: document.getElementById('oldpassword').value,
+                                                                            newpassword: document.getElementById('newpassword').value
+                                                                        }
+                                                                    )
+                                                                else
+                                                                    saveSecurityHandler(
+                                                                        {
+                                                                            username: document.getElementById('username').value,
+                                                                            oldpassword: document.getElementById('oldpassword').value,
+                                                                            newpassword: document.getElementById('newpassword').value
+                                                                        }
+                                                                    )
+
+                                                            }}>Save</Button>
+                                                            <Button color="danger" onClick={() => { SetEditableUsername(false); setEditablePassword(false) }}>Cancel</Button>
+                                                        </div>
+                                                        : null
+                                                    }
+
+                                                </Row>
+
 
                                             </Col>
                                         </Row>

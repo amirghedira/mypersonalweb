@@ -13,6 +13,7 @@ import {
     TabPane,
     Container,
     Row,
+    UncontrolledTooltip,
     Col
 } from "reactstrap";
 
@@ -202,33 +203,48 @@ const ProfilePage = () => {
                                                         <div style={{ margin: '20px' }}>
                                                             <h4>Personal information</h4>
                                                             <hr style={{ backgroundColor: '#bfbfbf' }} />
-                                                            <Row style={{ paddingLeft: '20px' }}>
+                                                            <Row style={{ paddingLeft: '20px', paddingTop: '30px' }}>
                                                                 <Col>
-                                                                    <Row>
-                                                                        <Col >
-                                                                            <h4 style={{ fontWeight: 'normal' }}>Gender</h4>
+                                                                    <Row style={{ marginBottom: '30px' }}>
+                                                                        <Col style={{ display: 'flex', alignItems: 'center' }}>
+                                                                            <h4 style={{ fontWeight: 'normal', margin: '0' }}>Gender</h4>
                                                                         </Col>
-                                                                        <Col>
-                                                                            <h4 style={{ fontWeight: 'normal' }}>
-                                                                                <i className="fas fa-venus-mars fa-2x" style={{ marginRight: '10px', color: 'red' }}></i> {context.UserProfile.gender}</h4>
-                                                                        </Col>
-                                                                    </Row>
-                                                                    <Row>
-                                                                        <Col >
-                                                                            <h4 style={{ fontWeight: 'normal' }}>Birthday</h4>
-                                                                        </Col>
-                                                                        <Col>
-                                                                            <h4 style={{ fontWeight: 'normal' }}>
-                                                                                <i className="fas fa-birthday-cake fa-2x" style={{ color: 'pink', marginRight: '20px' }}></i>{context.UserProfile.birthday}</h4>
+                                                                        <Col style={{ display: 'flex', alignItems: 'center' }} >
+                                                                            <i className="fas fa-venus-mars fa-2x" style={{ marginRight: '10px', color: 'red' }}></i>
+                                                                            <h4 style={{ fontWeight: 'normal', margin: '0' }}>
+                                                                                {context.UserProfile.gender}</h4>
                                                                         </Col>
                                                                     </Row>
-                                                                    <Row>
-                                                                        <Col >
-                                                                            <h4 style={{ fontWeight: 'normal' }}>Interest</h4>
+                                                                    <Row style={{ marginBottom: '30px' }}>
+                                                                        <Col style={{ display: 'flex', alignItems: 'center' }} >
+                                                                            <h4 style={{ fontWeight: 'normal', margin: '0' }}>Birthday</h4>
                                                                         </Col>
-                                                                        <Col>
-                                                                            <h4 style={{ fontWeight: 'normal' }}>
-                                                                                <i className="fas fa-map fa-2x" style={{ marginRight: '10px', color: '#33ccff' }}></i> {context.UserProfile.interest}</h4>
+                                                                        <Col style={{ display: 'flex', alignItems: 'center' }}>
+                                                                            <i className="fas fa-birthday-cake fa-2x" style={{ color: 'pink', marginRight: '20px' }}></i>
+                                                                            <h4 style={{ fontWeight: 'normal', margin: '0' }}>
+                                                                                {context.UserProfile.birthday}</h4>
+                                                                        </Col>
+                                                                    </Row>
+                                                                    <Row style={{ marginBottom: '30px' }}>
+                                                                        <Col xs="2" style={{ display: 'flex', alignItems: 'center' }} >
+                                                                            <h4 style={{ fontWeight: 'normal', margin: '0' }}>Skills</h4>
+                                                                        </Col>
+                                                                        <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                                            {context.UserProfile.skills.map(skill => {
+                                                                                return (
+                                                                                    <div key={skill._id}>
+                                                                                        <img id={skill.description} src={skill.icon} style={{ height: '40px', width: '40px', margin: '0 10px 10px 0' }} alt='...' />
+                                                                                        <UncontrolledTooltip target={"#" + skill.description}>
+                                                                                            {skill.description}
+                                                                                        </UncontrolledTooltip>
+                                                                                    </div>
+
+
+                                                                                )
+                                                                            })
+
+                                                                            }
+
                                                                         </Col>
                                                                     </Row>
                                                                 </Col>
@@ -242,7 +258,7 @@ const ProfilePage = () => {
                                                                 <Col>
                                                                     <Row className={classes.mainRow}>
                                                                         <Col className={classes.mainCol} xs="1">
-                                                                            <h4 style={{ fontWeight: 'normal', margin: 'auto' }}>Email</h4>
+                                                                            <h4 style={{ fontWeight: 'normal', margin: '0' }}>Email</h4>
                                                                         </Col>
                                                                         <Col className={classes.mainCol}>
 
@@ -253,7 +269,7 @@ const ProfilePage = () => {
                                                                     </Row>
                                                                     <Row className={classes.mainRow}>
                                                                         <Col className={classes.mainCol} xs="1">
-                                                                            <h4 style={{ fontWeight: 'normal', margin: 'auto' }}>Github</h4>
+                                                                            <h4 style={{ fontWeight: 'normal', margin: '0' }}>Github</h4>
                                                                         </Col>
                                                                         <Col className={classes.mainCol}>
                                                                             <a style={{ margin: 'auto' }} href={context.UserProfile.github} target='_blank' rel="noopener noreferrer" >
@@ -264,18 +280,19 @@ const ProfilePage = () => {
                                                                     </Row>
                                                                     <Row className={classes.mainRow}>
                                                                         <Col className={classes.mainCol} xs="1">
-                                                                            <h4 style={{ fontWeight: 'normal', margin: 'auto' }}>Skype</h4>
+                                                                            <h4 style={{ fontWeight: 'normal', margin: '0' }}>Skype</h4>
                                                                         </Col>
                                                                         <Col className={classes.mainCol}>
 
-                                                                            <a href={`skype:${context.UserProfile.skype}?chat`} style={{ margin: 'auto' }} ><i className="fab fa-skype fa-2x" style={{ size: '30px', color: '#00aff0', marginRight: '10px' }}></i>
+                                                                            <a href={`skype:${context.UserProfile.skype}?chat`} style={{ margin: 'auto' }} >
+                                                                                <i className="fab fa-skype fa-2x" style={{ size: '30px', color: '#00aff0' }}></i>
                                                                             </a>
 
                                                                         </Col>
                                                                     </Row>
                                                                     <Row className={classes.mainRow}>
                                                                         <Col className={classes.mainCol} xs="1">
-                                                                            <h4 style={{ fontWeight: 'normal', margin: 'auto' }}>Facebook</h4>
+                                                                            <h4 style={{ fontWeight: 'normal', margin: '0' }}>Facebook</h4>
                                                                         </Col>
                                                                         <Col className={classes.mainCol}>
                                                                             <a style={{ margin: 'auto' }} href={context.UserProfile.facebook} target='_blank' rel="noopener noreferrer" >
@@ -285,7 +302,7 @@ const ProfilePage = () => {
                                                                     </Row>
                                                                     <Row className={classes.mainRow}>
                                                                         <Col className={classes.mainCol} xs="1">
-                                                                            <h4 style={{ fontWeight: 'normal', margin: 'auto' }}>LinkedIn</h4>
+                                                                            <h4 style={{ fontWeight: 'normal', margin: '0' }}>LinkedIn</h4>
                                                                         </Col>
                                                                         <Col className={classes.mainCol}>
                                                                             <a style={{ margin: 'auto' }} href={context.UserProfile.linkedin} target='_blank' rel="noopener noreferrer" >
@@ -296,7 +313,7 @@ const ProfilePage = () => {
                                                                     </Row>
                                                                     <Row className={classes.mainRow}>
                                                                         <Col className={classes.mainCol} xs="1">
-                                                                            <h4 style={{ fontWeight: 'normal', margin: 'auto' }}>Phone</h4>
+                                                                            <h4 style={{ fontWeight: 'normal', margin: '0' }}>Phone</h4>
                                                                         </Col>
                                                                         <Col className={classes.mainCol}>
                                                                             <h4 style={{ fontWeight: 'normal', margin: 'auto' }}>
