@@ -24,7 +24,7 @@ exports.updateUser = (req, res, next) => {
         ops[obj.propName] = obj.value
     }
 
-    User.updateOne({ _id: "5e82bb24592a39142b9725f1" }, { $set: ops })
+    User.updateOne({ _id: req.user.userid }, { $set: ops })
         .exec()
         .then(result => {
             res.status(200).json(result)
@@ -45,7 +45,7 @@ exports.updatePassword = (req, res, next) => {
                         bcrypt.hash(req.body.password, 5)
                             .then(hash => {
 
-                                User.updateOne({ _id: "5e82bb24592a39142b9725f1" }, { $set: { password: hash } })
+                                User.updateOne({ _id: req.user.userid }, { $set: { password: hash } })
                                     .exec()
                                     .then(response => {
                                         res.status(200).json({ message: 'Password successfully updated' })
@@ -115,7 +115,7 @@ exports.updateProfileImg = (req, res, next) => {
         if (err)
             console.log(err)
     });
-    User.updateOne({ _id: "5e82bb24592a39142b9725f1" }, { $set: { profileimage: req.file.secure_url } })
+    User.updateOne({ _id: req.user.userid }, { $set: { profileimage: req.file.secure_url } })
         .exec()
         .then(result => {
             res.status(200).json({ imageurl: req.file.secure_url })
@@ -132,7 +132,7 @@ exports.updateBackgroundImg = (req, res, next) => {
         if (err)
             console.log(err)
     });
-    User.updateOne({ _id: "5e82bb24592a39142b9725f1" }, { $set: { backgroundimage: req.file.secure_url } })
+    User.updateOne({ _id: req.user.userid }, { $set: { backgroundimage: req.file.secure_url } })
         .exec()
         .then(result => {
             res.status(200).json({ imageurl: req.file.secure_url })
@@ -143,7 +143,7 @@ exports.updateBackgroundImg = (req, res, next) => {
 }
 
 exports.updloadImages = (req, res, next) => {
-    User.updateOne({ _id: "5e82bb24592a39142b9725f1" }, { $push: { images: req.file.secure_url } })
+    User.updateOne({ _id: req.user.userid }, { $push: { images: req.file.secure_url } })
         .exec()
         .then(result => {
             res.status(200).json({ imageurl: req.file.secure_url })
@@ -158,7 +158,7 @@ exports.deleteImage = (req, res, next) => {
         if (err)
             console.log(err)
     });
-    User.updateOne({ _id: "5e82bb24592a39142b9725f1" }, { images: req.body.images })
+    User.updateOne({ _id: req.user.userid }, { images: req.body.images })
         .exec()
         .then(result => {
             res.status(200).json(result)
@@ -168,7 +168,7 @@ exports.deleteImage = (req, res, next) => {
         })
 }
 exports.updateNews = (req, res, next) => {
-    User.updateOne({ _id: "5e82bb24592a39142b9725f1" }, { $set: { news: req.body.news } })
+    User.updateOne({ _id: req.user.userid }, { $set: { news: req.body.news } })
         .exec()
         .then(result => {
             res.status(200).json(result)
@@ -182,7 +182,7 @@ exports.postNews = (req, res, next) => {
     const id = new mongoose.Types.ObjectId();
     const date = new Date().toISOString()
     console.log(req.body)
-    User.updateOne({ _id: "5e82bb24592a39142b9725f1" }, { $push: { news: { _id: id, title: req.body.title, content: req.body.content, date: date } } })
+    User.updateOne({ _id: req.user.userid }, { $push: { news: { _id: id, title: req.body.title, content: req.body.content, date: date } } })
         .exec()
         .then(result => {
             res.status(200).json({ _id: id, date: date })
@@ -194,7 +194,7 @@ exports.postNews = (req, res, next) => {
 
 exports.addSkill = (req, res) => {
     let id = new mongoose.Types.ObjectId()
-    User.updateOne({ _id: "5e82bb24592a39142b9725f1" }, {
+    User.updateOne({ _id: req.user.userid }, {
         $push: {
             skills:
                 { _id: id, icon: req.file.secure_url, description: req.body.description }
@@ -211,7 +211,8 @@ exports.addSkill = (req, res) => {
 }
 exports.deleteSkill = (req, res) => {
 
-    User.findOne({ _id: "5e82bb24592a39142b9725f1" })
+    console.log(req.user.userid)
+    User.findOne({ _id: req.user.userid })
         .then(user => {
             const index = user.skills.findIndex(skill => { return skill._id.toString() === req.params.id })
             let imageurl = user.skills[index].icon.split('/')[7].split('.')[0];
