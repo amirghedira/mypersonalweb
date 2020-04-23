@@ -270,12 +270,10 @@ const IndexNavbar = () => {
                                     >
                                         <UncontrolledDropdown nav>
                                             <DropdownToggle
-
                                                 nav
-                                                style={{ display: 'flex' }}
 
                                             >
-                                                <i className="fas fa-bell fa-2x" style={{ margin: 'auto', size: '20px' }}>
+                                                <i className="fas fa-bell fa-2x" style={{ size: '20px' }}>
                                                     {!LoadingNotification && context.Notifications.filter(notification => { return notification.read === false }).length > 0 ?
                                                         < Badge style={{ witdh: '20px', height: '20px', borderRadius: '100px', fontSize: '14px' }} color="danger">
                                                             {
@@ -287,7 +285,7 @@ const IndexNavbar = () => {
 
 
                                             </DropdownToggle>
-                                            <DropdownMenu right style={{ minHeight: '180px', minWidth: '280px', maxHeight: '250px', overflowY: 'auto', padding: '0', display: !LoadingNotification && context.Notifications.length === 0 ? 'flex' : 'block' }}>
+                                            <DropdownMenu right style={{ maxHeight: '250px', overflowY: 'auto', height: 'fit-content', padding: '0', display: !LoadingNotification && context.Notifications.length === 0 ? 'flex' : 'block' }}>
                                                 {
                                                     !LoadingNotification ?
                                                         context.Notifications.length > 0 ?
@@ -300,13 +298,19 @@ const IndexNavbar = () => {
 
                                                                         }}>
                                                                         <DropdownItem
-                                                                            style={{ minHeight: '50px', backgroundColor: !notification.read ? '#f2f2f2' : 'white', margin: '0' }}
+                                                                            style={{
+                                                                                minHeight: '50px',
+                                                                                backgroundColor:
+                                                                                    !notification.read && !collapseOpen ? '#f2f2f2' : notification.read && !collapseOpen ? 'white' :
+                                                                                        !notification.read && collapseOpen ? '#999999' : 'b3b3b3'
+                                                                                , margin: '0'
+                                                                            }}
                                                                             onClick={() => { context.makeasRead(notification._id) }}>
 
                                                                             {notification.read ?
-                                                                                notification.content
+                                                                                <p style={{ width: '300px', overflow: 'hidden', whiteSpace: 'pre-wrap' }}>{notification.content}</p>
                                                                                 :
-                                                                                <strong> {notification.content}</strong>
+                                                                                <strong style={{ maxWidth: '200px' }}> {notification.content}</strong>
                                                                             }
                                                                         </DropdownItem>
                                                                         <hr style={{ margin: '0', backgroundColor: '#cccccc' }} />

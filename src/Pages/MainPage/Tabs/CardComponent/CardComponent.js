@@ -183,7 +183,12 @@ const CardComponent = (props) => {
                             </Col>
 
                             <Col style={{ dispaly: 'flex', marginLeft: '10px', marginRight: '10px' }}  >
-                                <a href={props.github} target="_blank" rel="noopener noreferrer" style={{ color: 'black', textDecoration: 'none' }}>
+                                <a
+                                    href={props.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{ color: 'black', textDecoration: 'none' }}
+                                    onClick={() => { context.UpdateGitViewer(props._id) }}>
                                     <Button
                                         onMouseEnter={() => { setfocusedGithub(true) }}
                                         onMouseLeave={() => { setfocusedGithub(false) }}
