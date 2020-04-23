@@ -24,7 +24,7 @@ const AppContext = (props) => {
 
     React.useEffect(() => {
 
-        setsocket(io('http://localhost:5000'))
+        setsocket(io('https://mywebrestapi.herokuapp.com'))
         axios.get('/banned')
             .then(result => {
                 SetBannedUsers(result.data.banned)

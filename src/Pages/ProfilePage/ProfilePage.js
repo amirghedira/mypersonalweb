@@ -232,8 +232,8 @@ const ProfilePage = () => {
                                                                         <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                                                             {context.UserProfile.skills.map(skill => {
                                                                                 return (
-                                                                                    <div key={skill._id}>
-                                                                                        <img id={skill.description} src={skill.icon} style={{ height: '40px', width: '40px', margin: '0 10px 10px 0' }} alt='...' />
+                                                                                    <div key={skill._id} style={{ marginRight: '10px' }}>
+                                                                                        <img id={skill.description} src={skill.icon} style={{ height: '40px', width: '40px', margin: '0' }} alt='...' />
                                                                                         <UncontrolledTooltip target={"#" + skill.description}>
                                                                                             {skill.description}
                                                                                         </UncontrolledTooltip>

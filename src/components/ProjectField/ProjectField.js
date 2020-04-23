@@ -2,7 +2,8 @@ import React from 'react';
 import classes from './ProjectField.module.css';
 import { Nav, Col } from 'reactstrap';
 import Loading from '../../Pages/LoadingPage/LoadingPage'
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { xcode } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
 const ProjectField = (props) => {
@@ -48,7 +49,7 @@ const ProjectField = (props) => {
                                     )
                                 } else {
                                     return (
-                                        <SyntaxHighlighter key={index} showLineNumbers={true} wrapLines={true} language="javascript" style={docco} >
+                                        <SyntaxHighlighter key={index} showLineNumbers={true} wrapLines={true} language="javascript" style={xcode} >
                                             {item}
                                         </SyntaxHighlighter>
                                     )
