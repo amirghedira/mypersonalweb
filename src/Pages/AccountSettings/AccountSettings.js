@@ -68,8 +68,9 @@ const AccountSettings = () => {
             }
 
         }
-        else
-            context.ErrorAccureHandler();
+        else {
+            context.ErrorAccureHandler(401, 'You are not authorized to access this page');
+        }
     }, [context])
 
     const onUploadProgress = (ProgressEvent) => {

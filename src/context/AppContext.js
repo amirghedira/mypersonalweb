@@ -31,7 +31,6 @@ const AppContext = (props) => {
             })
             .catch(err => {
                 ErrorAccureHandler(500, "Connection to server has timedout")
-                setErrorAccured(true)
             })
         fetch("https://api.ipgeolocation.io/getip")
             .then(response => {
@@ -42,7 +41,6 @@ const AppContext = (props) => {
             })
             .catch(err => {
                 ErrorAccureHandler(500, "Connection to server has timedout")
-                setErrorAccured(true)
             })
         axios.get('/project')
             .then(result => {
@@ -50,7 +48,6 @@ const AppContext = (props) => {
             })
             .catch(err => {
                 ErrorAccureHandler(500, "Connection to server has timedout")
-                setErrorAccured(true)
             })
         axios.get('/user')
             .then(result => {
@@ -58,7 +55,6 @@ const AppContext = (props) => {
             })
             .catch(err => {
                 ErrorAccureHandler(500, "Connection to server has timedout")
-                setErrorAccured(true)
             })
         axios.get('/notification')
             .then(result => {
@@ -66,7 +62,6 @@ const AppContext = (props) => {
             })
             .catch(err => {
                 ErrorAccureHandler(500, "Connection to server has timedout")
-                setErrorAccured(true)
             })
     }, [])
     React.useEffect(() => {
@@ -534,6 +529,7 @@ const AppContext = (props) => {
             statuscode: statuscode,
             message: message
         })
+        setErrorAccured(true)
 
     }
     const UpdateProjects = (index, newProject) => {
