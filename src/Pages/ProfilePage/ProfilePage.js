@@ -229,21 +229,23 @@ const ProfilePage = () => {
                                                                         <Col xs="2" style={{ display: 'flex', alignItems: 'center' }} >
                                                                             <h4 style={{ fontWeight: 'normal', margin: '0' }}>Skills</h4>
                                                                         </Col>
-                                                                        <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                                                            {context.UserProfile.skills.map(skill => {
-                                                                                return (
-                                                                                    <div key={skill._id} style={{ marginRight: '10px' }}>
-                                                                                        <img id={skill.description} src={skill.icon} style={{ height: '40px', width: '40px', margin: '0' }} alt='...' />
-                                                                                        <UncontrolledTooltip target={"#" + skill.description}>
-                                                                                            {skill.description}
-                                                                                        </UncontrolledTooltip>
-                                                                                    </div>
+                                                                        <Col >
+                                                                            <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                                                {context.UserProfile.skills.map(skill => {
+                                                                                    return (
+                                                                                        <Col xs="3" xl="1" lg="2" key={skill._id} style={{ margin: '10px' }}>
+                                                                                            <img id={skill.description} src={skill.icon} style={{ height: '40px', width: '40px', margin: '0' }} alt='...' />
+                                                                                            <UncontrolledTooltip target={"#" + skill.description}>
+                                                                                                {skill.description}
+                                                                                            </UncontrolledTooltip>
+                                                                                        </Col>
 
 
-                                                                                )
-                                                                            })
+                                                                                    )
+                                                                                })
 
-                                                                            }
+                                                                                }
+                                                                            </Row>
 
                                                                         </Col>
                                                                     </Row>
