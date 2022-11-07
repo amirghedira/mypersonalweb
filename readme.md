@@ -34,52 +34,52 @@ Without forgetting libraries I used which improved the responsiveness of this fr
 ```
 
 ## React-Moment:
-Link: https://www.npmjs.com/package/react-moment
+Link: [https://www.npmjs.com/package/react-moment](https://www.npmjs.com/package/react-moment)
 Actually, this library is responsible to format date in any way you like, for example, you can choose "from now" option to make the date relative to now date (1 minute ago, one hour ago, etc...)
 
 ## material-ui/core:
-Link: https://material-ui.com/
+Link: [https://material-ui.com/](https://material-ui.com/)
 This huge an awesome library provide amazing pre-built components which are sweetly styled and responsive check out this library if you wanna make your web app looks amazing.
 In fact, I used this library to display a progress bar whenever an HTTP request is sent
 .
 ## react-autosize-textarea:
-Link: https://www.npmjs.com/package/react-autosize-textarea
+Link: [https://www.npmjs.com/package/react-autosize-textarea](https://www.npmjs.com/package/react-autosize-textarea)
 This is a pre-built components for react which is a responsive textarea, in fact, it resizes depends on your inputs.
 
 ## react-syntax-highlighter:
-Link: https://www.npmjs.com/package/react-syntax-highlighter
+Link: [https://www.npmjs.com/package/react-syntax-highlighter](https://www.npmjs.com/package/react-syntax-highlighter)
 
 This component is responsible to display code with a good format in a div block, I will upload images in photos section about this.
 
 ## react-image-lightbox:
-Link: https://www.npmjs.com/package/react-image-lightbox
+Link: [https://www.npmjs.com/package/react-image-lightbox](https://www.npmjs.com/package/react-image-lightbox)
 This component is responsible for displaying images in a modal with a cool design (like Facebook images displayer but without comments)
 
 ## React-loadingg:
-Link: https://www.npmjs.com/package/react-loadingg
+Link: [https://www.npmjs.com/package/react-loadingg](https://www.npmjs.com/package/react-loadingg)
 This component, as the names mentioned, contains a variety of 
-loading styles you can check the demo here:http://139.196.82.33:8080/iframe.html?id=demo--demo
+loading styles you can check the demo here:[http://139.196.82.33](http://139.196.82.33):8080/iframe.html?id=demo--demo
 
 ## react-toastify:
-Link: https://www.npmjs.com/package/react-toastify
+Link: [https://www.npmjs.com/package/react-toastify](https://www.npmjs.com/package/react-toastify)
 This component makes notifications easy to display and quite stylish, I will upload some photos of some notifications I have here.
 
 ## reactstrap: 
-Link: https://www.npmjs.com/package/reactstrap
+Link: [https://www.npmjs.com/package/reactstrap](https://www.npmjs.com/package/reactstrap)
 As material UI provides cool pre-built components , Reactstrap makes the same thing and personally I choosed to built the entire front end with it , its easy to learn and easy to use 
 check the docs for more information about what reactstrap provides
-docs: https://reactstrap.github.io/
+docs: [https://reactstrap.github.io/](https://reactstrap.github.io/)
 
 ## react-router , react-router-dom:
-Link: https://www.npmjs.com/package/react-router-dom
+Link: [https://www.npmjs.com/package/react-router-dom](https://www.npmjs.com/package/react-router-dom)
 Basically, this library provides the utility to make multiple pages in your application using routing 
 
 ## Axios: 
-Link: https://www.npmjs.com/package/axios
+Link: [https://www.npmjs.com/package/axios](https://www.npmjs.com/package/axios)
 This library is an alternative to fetch in javascript, it's easier to manipulate and easy to learn, and to use. Actually, the most liked feature that provides It, is the ability to make a base URL to HTTP requests, without repeating it each HTTP request.
 
 ## socket.io:
-Link: https://www.npmjs.com/package/socket.io
+Link: [https://www.npmjs.com/package/socket.io](https://www.npmjs.com/package/socket.io)
 Socket is known to be a front and a back end service, i will talk more about the service side of socketio in the backend project,
 this library you can use it to emit any changes to the users which are connected to the page (to the socket) this makes the user interface more reactive and more interactive with changes without even loading the page. 
 
