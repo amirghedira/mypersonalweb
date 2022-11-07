@@ -5,7 +5,16 @@
 
  This platform is made in a way that provides several features including its protection.
 In fact a ban system has been added in order to ban users who spam comment sections or questions/suggestions sections..
-After being banned, the user can see all the project as all users but he will not have access to comment on any project or even to post a topic.
+
+This is achieved by fetching each user IP whenever it connects to the application. 
+Whenever the user spam topics / questions or comments under projects the admin user will have insights about the user ip and can ban it.
+
+![user-ips](https://amirplatform.s3.eu-central-1.amazonaws.com/project/1667814557875-topic-ban.png)
+
+After being banned, the user can see all the project as all users, but he will not have access to comment on any project or even to post a topic.
+
+![banned-user](https://amirplatform.s3.eu-central-1.amazonaws.com/project/1667814950446-banned-user.png)
+
 In addition, the platform can detect your IP address and ban it if you didn't respect the rules.
 Also, the integration of socket, make the user experience better, in fact it allows an instant change whenever a project is updated or posted, also in suggestions/questions sections, the interface will be updated automatically whenever a topic or a reply has been posted. Also for banned users once it's banned, he will be prevented from posting instantly.
 Without forgetting libraries I used which improved the responsiveness of this front end and made it more interactive. 
