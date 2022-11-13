@@ -1,13 +1,27 @@
 # Overview 
 
- I started this web application in order to display my projects and to arrange them, Also am learning React for a bit now and I wanted to develop an entire application with it. So I find it as an opportunity to start this application and improve my skills in React. In addition, this application is all about managing my projects displaying them with a nice layout and allow people to interact with each project and give their opinion not also that, but even ask questions about anything related to development and software engineering. 
+ I started this web application in order to display my projects and to arrange them, Also I am learning React for a bit now, and I wanted to develop an entire application with it. So I find it as an opportunity to start this application and improve my skills in React. In addition, this application is all about managing my projects displaying them with a nice layout and allow people to interact with each project and give their opinion not also that, but even ask questions about anything related to development and software engineering. 
+
+
+# Launch the project
+To launch the project you have to install the Node packages for that simply run:
+``` bash
+npm install
+```
+Then to start the frontend, run:
+``` bash
+npm start
+```
+
+Note that the frontend will be accessible on port `3000`
+
  # Features / Technologies 
 
- This platform is made in a way that provides several features including its protection.
+ This platform is made in a way that provides several features, including its protection.
 In fact a ban system has been added in order to ban users who spam comment sections or questions/suggestions sections..
 
 This is achieved by fetching each user IP whenever it connects to the application. 
-Whenever the user spam topics / questions or comments under projects the admin user will have insights about the user ip and can ban it.
+Whenever the user spam topics / questions or comments under projects, the admin user will have insights about the user ip and can ban it.
 
 ![user-ips](https://amirplatform.s3.eu-central-1.amazonaws.com/project/1667814557875-topic-ban.png)
 
@@ -16,8 +30,8 @@ After being banned, the user can see all the project as all users, but he will n
 ![banned-user](https://amirplatform.s3.eu-central-1.amazonaws.com/project/1667814950446-banned-user.png)
 
 In addition, the platform can detect your IP address and ban it if you didn't respect the rules.
-Also, the integration of socket, make the user experience better, in fact it allows an instant change whenever a project is updated or posted, also in suggestions/questions sections, the interface will be updated automatically whenever a topic or a reply has been posted. Also for banned users once it's banned, he will be prevented from posting instantly.
-Without forgetting libraries I used which improved the responsiveness of this front end and made it more interactive. 
+Also, the integration of socket, make the user experience better, in fact it allows an instant change whenever a project is updated or posted, also in suggestions/questions sections, the interface will be updated automatically whenever a topic or a reply has been posted. Moreover, for banned users, once it's banned, he will be prevented from posting instantly.
+Without forgetting, libraries I used which improved the responsiveness of this front end and made it more interactive. 
 # Platform & Libraries 
  Based on react , I used multiple packages from npm which was very helpful. These are dependencies I have used : 
 ``` json
@@ -48,12 +62,12 @@ Actually, this library is responsible to format date in any way you like, for ex
 
 ## material-ui/core:
 Link: [https://material-ui.com/](https://material-ui.com/)
-This huge an awesome library provide amazing pre-built components which are sweetly styled and responsive check out this library if you wanna make your web app looks amazing.
+This huge an awesome library provide amazing pre-built components which are sweetly styled and responsive, check out this library if you want to make your web app looks amazing.
 In fact, I used this library to display a progress bar whenever an HTTP request is sent
 .
 ## react-autosize-textarea:
 Link: [https://www.npmjs.com/package/react-autosize-textarea](https://www.npmjs.com/package/react-autosize-textarea)
-This is a pre-built components for react which is a responsive textarea, in fact, it resizes depends on your inputs.
+This is a pre-built component for react which is a responsive textarea, in fact, it resizes depends on your inputs.
 
 ## react-syntax-highlighter:
 Link: [https://www.npmjs.com/package/react-syntax-highlighter](https://www.npmjs.com/package/react-syntax-highlighter)
@@ -94,10 +108,10 @@ this library you can use it to emit any changes to the users which are connected
 
 # What I learned ?
  At the beginning I learned react with class components approach, I used to manage state in a class-based component.
-In this project, I decided to use react hooks and functional-based components since its the new way for development in reactjs, and I find them quite interesting and fun to use them.
+In this project, I decided to use React hooks and functional-based components since its the new way for development in reactjs, and I find them quite interesting and fun to use them.
 In addition, reactstrap, which I learned more things about responsiveness thanks to rows and cols system of reactstrap.
 Second, managing state, actually I have used the contextAPI of react which is built into it, I have isolated all the state related to projects and profile informations into a global state with I provide it to other components, not only state even handlers which handle projects and profile and logging in actions.
-The contextAPI allow managing state and reading it easier and more convinient.
-Also i learned to implement routing and provide a multiple page web application thanks to react-dom router 
+The contextAPI allow managing state and reading it easier and more convenient.
+Also, I learned to implement routing and provide a multiple page web application thanks to react-dom router 
 Last but not least, socketio (client site) I learned how to emit the events and get the event and unregister them when needed.
 Finally, and the most thing which i find it interesting, is the service workers, they are so useful to build a progressive web apps and more other things, I applied service workers to trigger notifications which pop up in the operating system (phone or PC)
