@@ -1,0 +1,8 @@
+version: '3.3'
+services:
+  amir_platform_ui:
+    restart: always
+    image: amir_platform_ui:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile

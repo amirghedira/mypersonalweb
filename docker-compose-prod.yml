@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  amir_platform_ui_prod:
+    restart: always
+    container_name: amir_platform_ui_prod
+    image: ${REGISTRY_IMAGE}/${IMAGE_NAME}:${VERSION}
+    networks:
+      - amir_platform_ui_prod
+    env_file: 
+      - .env
+    ports:
+      - "80:80"
+
+networks:
+  amir_platform_ui_prod:
+    driver: bridge
+
+
+
+    

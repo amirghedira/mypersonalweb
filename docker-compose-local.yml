@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  amir_platform_ui:
+    restart: always
+    container_name: amir_platform_ui
+    image: amir_platform_ui:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    networks:
+      - magic_burger
+    ports:
+      - "80:80"
+
+networks:
+  magic_burger:
+    driver: bridge
