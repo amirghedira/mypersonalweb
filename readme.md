@@ -4,6 +4,17 @@
 
 
 # Launch the project
+
+## Using Docker
+Note: Docker must be installed on your machine.
+
+To launch the project, simply run:
+```bash
+docker-compose -f docker-compose-local.yml up --build --force-recreate
+```
+
+## Manually
+
 To launch the project you have to install the Node packages for that simply run:
 ``` bash
 npm install
@@ -18,10 +29,10 @@ Note that the frontend will be accessible on port `3000`
  # Features / Technologies 
 
  This platform is made in a way that provides several features, including its protection.
-In fact a ban system has been added in order to ban users who spam comment sections or questions/suggestions sections..
+In fact, a ban system has been added in order to ban users who spam comment sections or questions/suggestions sections.
 
 This is achieved by fetching each user IP whenever it connects to the application. 
-Whenever the user spam topics / questions or comments under projects, the admin user will have insights about the user ip and can ban it.
+Whenever the user spam topics / questions or comments under projects, the admin user will have insights about the user IP and can ban it.
 
 ![user-ips](https://amirplatform.s3.eu-central-1.amazonaws.com/project/1667814557875-topic-ban.png)
 
@@ -33,7 +44,7 @@ In addition, the platform can detect your IP address and ban it if you didn't re
 Also, the integration of socket, make the user experience better, in fact it allows an instant change whenever a project is updated or posted, also in suggestions/questions sections, the interface will be updated automatically whenever a topic or a reply has been posted. Moreover, for banned users, once it's banned, he will be prevented from posting instantly.
 Without forgetting, libraries I used which improved the responsiveness of this front end and made it more interactive. 
 # Platform & Libraries 
- Based on react , I used multiple packages from npm which was very helpful. These are dependencies I have used : 
+ Based on react, I used multiple packages from npm which was very helpful. These are dependencies I have used : 
 ``` json
 {
         "@material-ui/core": "^4.9.7",
@@ -89,7 +100,7 @@ This component makes notifications easy to display and quite stylish, I will upl
 
 ## reactstrap: 
 Link: [https://www.npmjs.com/package/reactstrap](https://www.npmjs.com/package/reactstrap)
-As material UI provides cool pre-built components , Reactstrap makes the same thing and personally I choosed to built the entire front end with it , its easy to learn and easy to use 
+As material UI provides cool pre-built components, Reactstrap makes the same thing, and personally I chose to build the entire front end with it, It's easy to learn and easy to use 
 check the docs for more information about what reactstrap provides
 docs: [https://reactstrap.github.io/](https://reactstrap.github.io/)
 
@@ -99,19 +110,19 @@ Basically, this library provides the utility to make multiple pages in your appl
 
 ## Axios: 
 Link: [https://www.npmjs.com/package/axios](https://www.npmjs.com/package/axios)
-This library is an alternative to fetch in javascript, it's easier to manipulate and easy to learn, and to use. Actually, the most liked feature that provides It, is the ability to make a base URL to HTTP requests, without repeating it each HTTP request.
+This library is an alternative to fetch in JavaScript, it's easier to manipulate and easy to learn, and to use. Actually, the most liked feature that provides It, is the ability to make a base URL to HTTP requests, without repeating it each HTTP request.
 
 ## socket.io:
 Link: [https://www.npmjs.com/package/socket.io](https://www.npmjs.com/package/socket.io)
-Socket is known to be a front and a back end service, i will talk more about the service side of socketio in the backend project,
+Socket is known to be a front and a back end service, I will talk more about the service side of socketio in the backend project,
 this library you can use it to emit any changes to the users which are connected to the page (to the socket) this makes the user interface more reactive and more interactive with changes without even loading the page. 
 
 # What I learned ?
- At the beginning I learned react with class components approach, I used to manage state in a class-based component.
-In this project, I decided to use React hooks and functional-based components since its the new way for development in reactjs, and I find them quite interesting and fun to use them.
+ At the beginning I learned React with class components approach, I used to manage state in a class-based component.
+In this project, I decided to use React hooks and functional-based components since it's the new way for development in ReactJS, and I find them quite interesting and fun to use them.
 In addition, reactstrap, which I learned more things about responsiveness thanks to rows and cols system of reactstrap.
-Second, managing state, actually I have used the contextAPI of react which is built into it, I have isolated all the state related to projects and profile informations into a global state with I provide it to other components, not only state even handlers which handle projects and profile and logging in actions.
-The contextAPI allow managing state and reading it easier and more convenient.
+Second, managing state, actually I have used the context API of React which is built into it, I have isolated all the state related to projects and profile information into a global state with I provide it to other components, not only state even handlers which handle projects and profile and logging in actions.
+The context API allow managing state and reading it easier and more convenient.
 Also, I learned to implement routing and provide a multiple page web application thanks to react-dom router 
 Last but not least, socketio (client site) I learned how to emit the events and get the event and unregister them when needed.
 Finally, and the most thing which i find it interesting, is the service workers, they are so useful to build a progressive web apps and more other things, I applied service workers to trigger notifications which pop up in the operating system (phone or PC)
